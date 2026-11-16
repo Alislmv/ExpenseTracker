@@ -36,3 +36,4 @@ def validateCategory(category):
         invalidExpense("Invalid category!")
 
     return category
+
