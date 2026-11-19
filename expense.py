@@ -41,9 +41,9 @@ def updateExpense(expenseID, title, amount, category):
 
     for e in expenses:
         if e["id"] == expenseID:
-            e["title"] == validateTitle(title)
-            e["amount"] == validateAmount(amount)
-            e["category"] == validateCategory(category)
+            e["title"] = validateTitle(title)
+            e["amount"] = validateAmount(amount)
+            e["category"] = validateCategory(category)
 
             saveExpenses(expenses)
 

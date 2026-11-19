@@ -25,13 +25,13 @@ def validateAmount(amount):
         invalidExpense("Amount must be number")
 
     if amount <= 0:
-        invalidExpense("Amound must be greather than 0!")
+        invalidExpense("Amount must be greather than 0!")
 
     return amount
 
 def validateCategory(category):
-    category = category.strip().lower
-
+    category = category
+    
     if category not in CATEGORIES:
         invalidExpense("Invalid category!")
 

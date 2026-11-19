@@ -29,9 +29,10 @@ def startApp():
     while True:
         showMenu()
 
-        choice = int(input("enter your choice: "))
-
         try:
+
+            choice = int(input("enter your choice: "))
+
             if choice == 1:
                 title = input("enter expense title: ")
                 amount = input("enter expense amount: ")
@@ -41,7 +42,71 @@ def startApp():
                 print("Expense added successfully!")
                 print("Expense ID:", expense["id"])
 
-        except:
-            pass
+                return expense
+
+            elif choice == 2:
+                expenses = getAllExpenses()
+
+                if not expenses:
+                    print("No expenses found!")
+
+                else:
+                    for e in expenses:
+                        print(f"""
+                        ID: {e["id"]}
+                        Title: {e["title"]}
+                        Amount: {e["amount"]}
+                        Category: {e["category"]}
+                        Date: {e["date"]}
+                        """)
+
+            elif choice == 3:
+            
+                expenseID = input("enter expense id: ")
+                title = input("Enter new title: ")
+                amount = input("Enter new amount: ")
+                category = input("Enter new category: ")
+
+                expense = updateExpense(expenseID, title, amount, category)
+
+                print("Expense updated successfully!")
+
+            elif choice == 4:
+                expenseID = input("enter expense id: ")
+                deleteExpense(expenseID)
+
+                print("Expense deleted successfully!")
+
+            elif choice == 5:
+                expenseID = input("enter expense id: ")
+                expense = serachExpense(expenseID)
+
+                print(f"""
+                ID: {expense["id"]}
+                Title: {expense["title"]}
+                Amount: {expense["amount"]}
+                Category: {expense["category"]}
+                Date: {expense["date"]}
+                """)
+
+            elif choice == 6:
+                total = totalExpenses()
+                print(f"Total Expense: {total}")
+
+            elif choice == 7:
+                print("Categories:")
+                for category in CATEGORIES:
+                    print(f"- {category}")
+
+            elif choice == 8:
+                filePath = exportToCSV()
+                print(f"Expenses exported successfully to {filePath}")
+
+            elif choice == 0:
+                print("Exiting...")
+                break
+
+        except Exception as e:
+            print(e)
 
 startApp()   
